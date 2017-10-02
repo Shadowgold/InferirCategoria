@@ -1,0 +1,96 @@
+package com.sample
+
+rule "Categoria A"
+salience 50
+    when
+    	d : DTOInferirCategoria(categorizado == false);
+    	DTOInferirCategoria(porcentajeNoRequerido >= 0.85);
+    	DTOInferirCategoria(porcentajeNivel5 >= 0.8);
+    	DTOInferirCategoria(porcentajeNivel4 >= 0.75);
+    	DTOInferirCategoria(porcentajeNivel3 >= 0.7);
+    	DTOInferirCategoria(porcentajeNivel2 >= 0.65);
+    	DTOInferirCategoria(porcentajeNivel1 >= 0.6);
+    	
+    	r : DTOResultado();
+    then
+        //actions
+        r.setCategoria("A");
+        d.setCategorizado(true);
+        System.out.println("Bodega Categoría A");
+        System.out.println(d.isCategorizado());
+
+end
+rule "Categoria B"
+salience 40
+    when
+    	d : DTOInferirCategoria(categorizado == false);
+    	DTOInferirCategoria(porcentajeNoRequerido >= 0.8);
+    	DTOInferirCategoria(porcentajeNivel5 >= 0.75);
+    	DTOInferirCategoria(porcentajeNivel4 >= 0.7);
+    	DTOInferirCategoria(porcentajeNivel3 >= 0.65);
+    	DTOInferirCategoria(porcentajeNivel2 >= 0.6);
+    	
+    	r : DTOResultado();
+    then
+        //actions
+        r.setCategoria("B");
+        d.setCategorizado(true);
+        System.out.println("Bodega Categoría B");
+        System.out.println(d.isCategorizado());
+
+end
+rule "Categoria C"
+salience 30
+    when
+    	d : DTOInferirCategoria(categorizado == false && porcentajeNoRequerido >= 0.75 && porcentajeNivel5 >= 0.7 && porcentajeNivel4 >= 0.65 && porcentajeNivel3 >= 0.6 );
+    	//DTOInferirCategoria(porcentajeNoRequerido >= 0.75);
+    	
+    	//DTOInferirCategoria(porcentajeNivel5 >= 0.7);
+    	//DTOInferirCategoria(porcentajeNivel4 >= 0.65);
+    	//DTOInferirCategoria(porcentajeNivel3 >= 0.6);
+    	
+    	r : DTOResultado();
+    then
+        //actions
+        r.setCategoria("C");
+        d.setCategorizado(true);
+        System.out.println("Bodega Categoría C");
+        System.out.println(d.isCategorizado());
+
+end
+
+rule "Categoria D"
+salience 20
+    when
+    	d : DTOInferirCategoria(categorizado == false);
+    	DTOInferirCategoria(porcentajeNoRequerido >= 0.7);
+    	DTOInferirCategoria(porcentajeNivel5 >= 0.65);
+    	DTOInferirCategoria(porcentajeNivel4 >= 0.6);
+    	
+    	r : DTOResultado();
+    then
+        //actions
+        r.setCategoria("D");
+        d.setCategorizado(true);
+        System.out.println("Bodega Categoría D");
+        System.out.println(d.isCategorizado());
+
+end
+rule "Categoria E"
+salience 10
+    when
+        d : DTOInferirCategoria(categorizado == false);
+    	DTOInferirCategoria(porcentajeNoRequerido >= 0.65);
+    	DTOInferirCategoria(porcentajeNivel5 >= 0.6);
+    	
+    	r : DTOResultado();
+    then
+        //actions
+        r.setCategoria("E");
+        d.setCategorizado(true);
+        System.out.println("Bodega Categoría E");
+        System.out.println(d.isCategorizado());
+
+end
+
+
